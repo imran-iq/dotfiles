@@ -1,0 +1,46 @@
+[alias]
+    # new commands
+    amend = commit --verbose --amend
+    unstage = reset HEAD
+    add-theirs = !git checkout --theirs "$@" && git add "$@"
+    track = branch --set-tracking-to
+    # shortcuts
+    a   = add
+    at  = !git checkout --theirs "$@" && git add "$@"
+    au  = add --update
+    ap  = add --patch
+    aup = add --update --patch
+    b   = branch 
+    d   = diff --no-prefix --minimal --find-renames --find-copies --irreversible-delete
+    dc  = diff --no-prefix --minimal --find-renames --find-copies --irreversible-delete --cached
+    df  = diff --no-prefix --minimal --no-index
+    co  = checkout
+    cob = checkout --branch
+    cot = checkout --theirs
+    com = checkout --mine
+    ch  = cherry-pick
+    ci  = commit --verbose
+    cia = commit --verbose --amend
+    cim = commit --message
+    f   = fetch --prune --multiple
+    fa  = fetch --prune --all
+    l   = log --graph --cherry-mark --topo-order --date=relative --decorate --oneline --abbrev-commit
+    lg  = log --graph --cherry-mark --topo-order --date=relative --decorate --submodule --irreversible-delete --find-copies --find-renames --stat --minimal
+    ll  = log --graph --cherry-mark --topo-order --date=relative --decorate --submodule --irreversible-delete --find-copies --find-renames --stat --minimal --patch
+    lu  = log --graph --cherry-mark --topo-order --date=relative --decorate --submodule --irreversible-delete --find-copies --find-renames --stat --minimal HEAD..@{upstream}
+    m   = merge
+    origin = push --all --prune --force origin
+    pl  = pull --rebase --prune
+    pu  = push
+    r   = remote --verbose
+    rb  = rebase
+    rbi = rebase --interactive
+    rbc = rebase --continue
+    rba = rebase --abort
+    s   = status --untracked-files=no --short --branch
+    st  = status --untracked-files=no
+    sb = submodule
+    sbu = submodule update --init --recursive
+    sh  = show
+    wip = commit --all --message "WIP"
+
