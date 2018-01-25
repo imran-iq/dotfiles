@@ -1,11 +1,20 @@
+" Make screen updates not laggy hopefully
 set ttyfast
 set lazyredraw
+
+" Enable vim goodness
 set nocompatible
+
 syntax on
 set number
+
+" Use system clipboard
 set clipboard=unnamed
 set ruler
+
+" Allow filetype specific goodness
 filetype plugin indent on
+
 " Install vim-plug if we don't already have it
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -15,13 +24,16 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'posva/vim-vue', { 'for' : 'vue' }
-Plug 'altercation/vim-colors-solarized'
 Plug 'airblade/vim-gitgutter'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'valloric/youcompleteme', { 'do' : './install.py --clang-completer' }
+
+" Themes
+Plug 'nanotech/jellybeans.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
-" set background=dark
-colorscheme dracula
+set background=dark
+colorscheme jellybeans
 
 " Color column at 80 characters
 set colorcolumn=80
