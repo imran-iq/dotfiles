@@ -32,6 +32,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'junegunn/goyo.vim'
 " Themes
 Plug 'nanotech/jellybeans.vim'
 Plug 'altercation/vim-colors-solarized'
@@ -68,10 +69,12 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<c-p>" : "\<S-Tab>"
 
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 " Ale keybindings
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" Backups, swaps, and temps
+set nobackup
+set noswapfile
