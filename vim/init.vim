@@ -15,6 +15,29 @@ set number
 set clipboard=unnamed
 set ruler
 
+" Color column at 80 characters
+set colorcolumn=80
+
+" Whitespace behaviour
+set expandtab        " expand tabs by default
+set tabstop=4        " number of spaces a <Tab> character equals
+set softtabstop=4    " number of spaces a <Tab> character equals (insert mode)
+set shiftwidth=4     " number of spaces to use for indenting
+set smartindent      " smart autoindent on new lines
+set smarttab         " smart <Tab> behaviour at start of line
+set copyindent       " copy indent structure when making new lines
+
+" Backups, swaps, and temps
+set nobackup
+set noswapfile
+
+set hidden
+set nowrap
+
+" Highlight extra whitespace at the end of a line
+hi ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\v\s+$/
+
 " Allow filetype specific goodness
 filetype plugin indent on
 
@@ -33,13 +56,27 @@ Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'junegunn/goyo.vim'
+Plug 'roman/golden-ratio'
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'blueyed/vim-diminactive'
+Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
+Plug 'PeterRincker/vim-argumentative'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+
 " Themes
+Plug 'vim-airline/vim-airline-themes'
 Plug 'nanotech/jellybeans.vim'
 Plug 'altercation/vim-colors-solarized'
+Plug 'junegunn/seoul256.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
-set background=dark
-colorscheme jellybeans
+
+colorscheme seoul256
+set background=light
+
 " Indent guides
 let g:indentLine_char = '┆'
 let g:indentLine_first_char = '┆'
@@ -47,21 +84,6 @@ let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_fileTypeExclude = ['help', 'man']
 " Deoplete configuration
 let g:deoplete#enable_at_startup = 1
-" Color column at 80 characters
-set colorcolumn=80
-
-" Highlight extra whitespace at the end of a line
-hi ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\v\s+$/
-
-" Whitespace behaviour
-set expandtab        " expand tabs by default
-set tabstop=4        " number of spaces a <Tab> character equals
-set softtabstop=4    " number of spaces a <Tab> character equals (insert mode)
-set shiftwidth=4     " number of spaces to use for indenting
-set smartindent      " smart autoindent on new lines
-set smarttab         " smart <Tab> behaviour at start of line
-set copyindent       " copy indent structure when making new lines
 
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -75,6 +97,6 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-" Backups, swaps, and temps
-set nobackup
-set noswapfile
+let g:airline_powerline_fonts = 1
+let g:airline_theme='base16'
+let g:airline#extensions#tabline#enabled = 1
