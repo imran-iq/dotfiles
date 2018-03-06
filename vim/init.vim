@@ -4,6 +4,7 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 " Make screen updates not laggy hopefully
 set ttyfast
 set lazyredraw
+set regexpengine=1
 
 " Enable vim goodness
 set nocompatible
@@ -33,6 +34,9 @@ set noswapfile
 
 set hidden
 set nowrap
+
+" Use ripgrep for grep command
+set grepprg=rg\ --vimgrep
 
 " Highlight extra whitespace at the end of a line
 hi ExtraWhitespace ctermbg=red guibg=red
@@ -65,6 +69,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Themes
 Plug 'vim-airline/vim-airline-themes'
@@ -75,7 +81,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 colorscheme seoul256
-set background=light
+set background=dark
 
 " Indent guides
 let g:indentLine_char = '┆'
@@ -100,3 +106,18 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:airline_powerline_fonts = 1
 let g:airline_theme='base16'
 let g:airline#extensions#tabline#enabled = 1
+
+" FZF
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+nnoremap <Leader>ft :Tags!<CR>
+nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader>fg :Rg!<CR>
+nnoremap <Leader>fm :Marks<CR>
+nnoremap <Leader>ff :call fzf#run(fzf#wrap('files', { 'source': 'rg -g "" --files', 'down': '40%' }, 1))<CR>
+
