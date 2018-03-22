@@ -1,4 +1,4 @@
-let g:python_host_prog = '/usr/local/bin/python2'
+let g:python_host_prog = '/usr/local/opt/python2/bin/python2'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Make screen updates not laggy hopefully
@@ -19,6 +19,9 @@ set ruler
 " Color column at 80 characters
 set colorcolumn=80
 
+" Max columns to apply syntax to
+set synmaxcol=200
+
 " Whitespace behaviour
 set expandtab        " expand tabs by default
 set tabstop=4        " number of spaces a <Tab> character equals
@@ -34,13 +37,13 @@ set noswapfile
 
 set hidden
 set nowrap
+set autowrite " write file on buffer switch
+set autoread
+" True color support
+set termguicolors
 
 " Use ripgrep for grep command
 set grepprg=rg\ --vimgrep
-
-" Highlight extra whitespace at the end of a line
-hi ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\v\s+$/
 
 " Allow filetype specific goodness
 filetype plugin indent on
@@ -59,7 +62,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-Plug 'junegunn/goyo.vim'
+Plug 'tpope/vim-repeat'
+Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'roman/golden-ratio'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'blueyed/vim-diminactive'
@@ -79,6 +83,9 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/seoul256.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
+
+let g:seoul256_background = 233
+let g:seoul256_srgb = 1
 
 colorscheme seoul256
 set background=dark
@@ -121,3 +128,6 @@ nnoremap <Leader>fg :Rg!<CR>
 nnoremap <Leader>fm :Marks<CR>
 nnoremap <Leader>ff :call fzf#run(fzf#wrap('files', { 'source': 'rg -g "" --files', 'down': '40%' }, 1))<CR>
 
+" Highlight extra whitespace at the end of a line
+hi ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\v\s+$/
