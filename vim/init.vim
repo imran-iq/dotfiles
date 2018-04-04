@@ -79,7 +79,6 @@ Plug 'junegunn/fzf.vim'
 " Themes
 Plug 'vim-airline/vim-airline-themes'
 Plug 'nanotech/jellybeans.vim'
-Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/seoul256.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
@@ -87,8 +86,8 @@ call plug#end()
 let g:seoul256_background = 233
 let g:seoul256_srgb = 1
 
-colorscheme seoul256
 set background=dark
+colorscheme jellybeans
 
 " Indent guides
 let g:indentLine_char = '┆'
@@ -97,6 +96,7 @@ let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_fileTypeExclude = ['help', 'man']
 " Deoplete configuration
 let g:deoplete#enable_at_startup = 1
+set completeopt-=preview
 
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -111,7 +111,7 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme='base16'
+let g:airline_theme='jellybeans'
 let g:airline#extensions#tabline#enabled = 1
 
 " FZF
