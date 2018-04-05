@@ -10,7 +10,7 @@
     au  = add --update
     ap  = add --patch
     aup = add --update --patch
-    b   = branch 
+    b   = branch
     d   = diff --no-prefix --minimal --find-renames --find-copies --irreversible-delete
     dc  = diff --no-prefix --minimal --find-renames --find-copies --irreversible-delete --cached
     df  = diff --no-prefix --minimal --no-index
