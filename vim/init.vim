@@ -9,6 +9,8 @@ set lazyredraw
 " Enable vim goodness
 set nocompatible
 
+let mapleader=" "  " space bar for leader
+
 syntax on
 set number
 
@@ -130,6 +132,12 @@ nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>fg :Rg!<CR>
 nnoremap <Leader>fm :Marks<CR>
 nnoremap <Leader>ff :call fzf#run(fzf#wrap('files', { 'source': 'rg -g "" --files', 'down': '40%' }, 1))<CR>
+
+" typing a semi-colon starts command (normal mode)
+nnoremap ; :
+
+" Remove highlight from searches (normal mode)
+nmap <silent> <Leader>/ :nohlsearch<CR>
 
 " Highlight extra whitespace at the end of a line
 hi ExtraWhitespace ctermbg=red guibg=red
