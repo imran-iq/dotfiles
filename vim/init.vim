@@ -4,7 +4,7 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 " Make screen updates not laggy hopefully
 set ttyfast
 set lazyredraw
-set regexpengine=1
+" set regexpengine=1
 
 " Enable vim goodness
 set nocompatible
@@ -81,13 +81,16 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'nanotech/jellybeans.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'hzchirs/vim-material'
+Plug 'w0ng/vim-hybrid'
+Plug 'ayu-theme/ayu-vim'
 call plug#end()
 
 let g:seoul256_background = 233
 let g:seoul256_srgb = 1
-
+let ayucolor='mirage'
 set background=dark
-colorscheme jellybeans
+colorscheme ayu
 
 " Indent guides
 let g:indentLine_char = '┆'
