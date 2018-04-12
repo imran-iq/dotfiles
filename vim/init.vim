@@ -58,28 +58,62 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+" Syntax
 Plug 'posva/vim-vue', { 'for' : 'vue' }
+
+" Git stuff in the gutter, undo/stage changes
 Plug 'airblade/vim-gitgutter'
+
+" Show pretty line on indentation levels
 Plug 'Yggdroot/indentLine'
+
+" Indent level movment commands
+Plug 'jeetsukumaran/vim-indentwise'
+
+" Aysnc linting
 Plug 'w0rp/ale'
+
+" Aysnc auotcompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+
+" Repeat plugin commands with .
 Plug 'tpope/vim-repeat'
-Plug 'junegunn/rainbow_parentheses.vim'
+
+" Resize non active windows
 Plug 'roman/golden-ratio'
+
+" Never have to :set paste
 Plug 'ConradIrwin/vim-bracketed-paste'
+
+" Make non active windows dark
 Plug 'blueyed/vim-diminactive'
-Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
+
+" Easier manipulation of func args, text objects a, i,
 Plug 'PeterRincker/vim-argumentative'
+
+" Git and Github stuff
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+
+" ys and cs for adding / changing surrounds
 Plug 'tpope/vim-surround'
-Plug 'vim-airline/vim-airline'
+
+" gc for commenting out stuff, toggleable
+Plug 'tpope/vim-commentary'
+
+" Alignment stuff
+Plug 'junegunn/vim-easy-align'
+
+" Delicious fuzzy file finding
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Themes
+" Because im too lazy to write my own status line
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Themes
 Plug 'nanotech/jellybeans.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -88,17 +122,24 @@ Plug 'w0ng/vim-hybrid'
 Plug 'ayu-theme/ayu-vim'
 call plug#end()
 
+" Theme config
 let g:seoul256_background = 233
 let g:seoul256_srgb = 1
 let ayucolor='mirage'
 set background=dark
 colorscheme ayu
 
+" Airline config
+let g:airline_powerline_fonts = 1
+let g:airline_theme='ayu_mirage'
+let g:airline#extensions#tabline#enabled = 1
+
 " Indent guides
 let g:indentLine_char = '┆'
 let g:indentLine_first_char = '┆'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_fileTypeExclude = ['help', 'man']
+
 " Deoplete configuration
 let g:deoplete#enable_at_startup = 1
 set completeopt-=preview
@@ -115,9 +156,12 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-let g:airline_powerline_fonts = 1
-let g:airline_theme='jellybeans'
-let g:airline#extensions#tabline#enabled = 1
+" easy-align config
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " FZF
 command! -bang -nargs=* Rg
