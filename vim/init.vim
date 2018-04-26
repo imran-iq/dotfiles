@@ -6,9 +6,6 @@ set ttyfast
 set lazyredraw
 " set regexpengine=1
 
-" Enable vim goodness
-set nocompatible
-
 let mapleader=" "  " space bar for leader
 
 syntax on
@@ -17,7 +14,7 @@ set number
 " Use system clipboard
 set clipboard=unnamed
 set ruler
-
+set noshowmode
 " Color column at 80 characters
 set colorcolumn=80
 
@@ -29,10 +26,9 @@ set expandtab        " expand tabs by default
 set tabstop=4        " number of spaces a <Tab> character equals
 set softtabstop=4    " number of spaces a <Tab> character equals (insert mode)
 set shiftwidth=4     " number of spaces to use for indenting
-set smartindent      " smart autoindent on new lines
 set smarttab         " smart <Tab> behaviour at start of line
 set copyindent       " copy indent structure when making new lines
-
+set cino='(0'
 " Backups, swaps, and temps
 set nobackup
 set noswapfile
@@ -73,9 +69,18 @@ Plug 'jeetsukumaran/vim-indentwise'
 " Aysnc linting
 Plug 'w0rp/ale'
 
+"Language server support
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 " Aysnc auotcompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+
+" Show function signature and inline doc.
+Plug 'Shougo/echodoc.vim'
 
 " Repeat plugin commands with .
 Plug 'tpope/vim-repeat'
@@ -127,6 +132,10 @@ let g:seoul256_background = 233
 let g:seoul256_srgb = 1
 let ayucolor='mirage'
 set background=dark
+augroup WhiteSpaceHighlight
+    autocmd!
+    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+augroup END
 colorscheme ayu
 
 " Airline config
@@ -143,12 +152,15 @@ let g:indentLine_fileTypeExclude = ['help', 'man']
 " Deoplete configuration
 let g:deoplete#enable_at_startup = 1
 set completeopt-=preview
+set shortmess+=c
 
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<c-p>" : "\<S-Tab>"
+
+let g:echodoc#enable_at_startup = 1
 
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
@@ -184,5 +196,18 @@ nnoremap ; :
 nmap <silent> <Leader>/ :nohlsearch<CR>
 
 " Highlight extra whitespace at the end of a line
-hi ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\v\s+$/
+
+
+" LSP
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls', '-v'] }
+" we are using ale for linting anyway
+let g:LanguageClient_diagnosticsEnable = 0
+
+
+augroup TrimTrailingWhiteSpace
+    autocmd!
+    autocmd BufWritePre *.py :%s/\s\+$//e
+augroup END
