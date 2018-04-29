@@ -200,11 +200,11 @@ match ExtraWhitespace /\v\s+$/
 
 
 " LSP
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls', '-v'] }
-" we are using ale for linting anyway
-let g:LanguageClient_diagnosticsEnable = 0
+" let g:LanguageClient_autoStart = 1
+" let g:LanguageClient_serverCommands = {
+"     \ 'python': ['pyls', '-v'] }
+" " we are using ale for linting anyway
+" let g:LanguageClient_diagnosticsEnable = 0
 
 
 augroup TrimTrailingWhiteSpace
