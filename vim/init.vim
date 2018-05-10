@@ -125,22 +125,28 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'hzchirs/vim-material'
 Plug 'w0ng/vim-hybrid'
 Plug 'ayu-theme/ayu-vim'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 " Theme config
 let g:seoul256_background = 233
 let g:seoul256_srgb = 1
+let g:gruvbox_contrast_dark = "hard"
+let g:gruvbox_invert_tabline = 1
+let g:gruvbox_sign_column = 'bg0'
 let ayucolor='mirage'
 set background=dark
+
 augroup WhiteSpaceHighlight
     autocmd!
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 augroup END
-colorscheme ayu
+
+colorscheme gruvbox
 
 " Airline config
 let g:airline_powerline_fonts = 1
-let g:airline_theme='ayu_mirage'
+let g:airline_theme='gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 
 " Indent guides
@@ -205,7 +211,6 @@ match ExtraWhitespace /\v\s+$/
 "     \ 'python': ['pyls', '-v'] }
 " " we are using ale for linting anyway
 " let g:LanguageClient_diagnosticsEnable = 0
-
 
 augroup TrimTrailingWhiteSpace
     autocmd!
