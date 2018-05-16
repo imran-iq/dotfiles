@@ -119,9 +119,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Themes
-Plug 'nanotech/jellybeans.vim'
-Plug 'junegunn/seoul256.vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'hzchirs/vim-material'
 Plug 'w0ng/vim-hybrid'
 Plug 'ayu-theme/ayu-vim'
@@ -129,8 +126,6 @@ Plug 'morhetz/gruvbox'
 call plug#end()
 
 " Theme config
-let g:seoul256_background = 233
-let g:seoul256_srgb = 1
 let g:gruvbox_contrast_dark = "hard"
 let g:gruvbox_invert_tabline = 1
 let g:gruvbox_sign_column = 'bg0'
