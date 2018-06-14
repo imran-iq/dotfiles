@@ -164,6 +164,8 @@ inoremap <expr><S-Tab> pumvisible() ? "\<c-p>" : "\<S-Tab>"
 let g:echodoc#enable_at_startup = 1
 
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_fixers = {'python': ['autopep8']}
+let g:ale_python_autopep8_options = '--aggressive --ignore E501'
 
 " Ale keybindings
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
