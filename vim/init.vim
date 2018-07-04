@@ -1,5 +1,17 @@
-let g:python_host_prog = '/usr/local/opt/python2/bin/python2'
-let g:python3_host_prog = '/usr/local/bin/python3'
+" Detect which system we are on
+if !exists("g:os")
+    if has("win64") || has("win32") || has("win16")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
+
+
+if g:os == "Darwin"
+    let g:python_host_prog = '/usr/local/opt/python2/bin/python2'
+    let g:python3_host_prog = '/usr/local/bin/python3'
+endif
 
 " Make screen updates not laggy hopefully
 set ttyfast
@@ -42,9 +54,6 @@ set termguicolors
 
 " Use ripgrep for grep command
 set grepprg=rg\ --vimgrep
-
-" Allow filetype specific goodness
-filetype plugin indent on
 
 " Install vim-plug if we don't already have it
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -117,6 +126,11 @@ Plug 'junegunn/fzf.vim'
 " Because im too lazy to write my own status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+if g:os == "Darwin"
+    " Dash plugin for mac
+    Plug 'rizzatti/dash.vim'
+endif
 
 " Themes
 Plug 'hzchirs/vim-material'
