@@ -67,7 +67,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'posva/vim-vue', { 'for' : 'vue' }
 
 " Git stuff in the gutter, undo/stage changes
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 
 " Show pretty line on indentation levels
 Plug 'Yggdroot/indentLine'
@@ -87,6 +88,9 @@ Plug 'autozimu/LanguageClient-neovim', {
 " Aysnc auotcompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+
+" Python jedi goodness
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 
 " Show function signature and inline doc.
 Plug 'Shougo/echodoc.vim'
@@ -178,8 +182,15 @@ inoremap <expr><S-Tab> pumvisible() ? "\<c-p>" : "\<S-Tab>"
 let g:echodoc#enable_at_startup = 1
 
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_fixers = {'python': ['autopep8']}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['autopep8', 'isort'],
+\   'javascript': ['eslint'],
+\   'vue': ['eslint']
+\}
+
 let g:ale_python_autopep8_options = '--aggressive --ignore E501'
+let g:ale_fix_on_save = 1
 
 " Ale keybindings
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -223,7 +234,12 @@ match ExtraWhitespace /\v\s+$/
 " " we are using ale for linting anyway
 " let g:LanguageClient_diagnosticsEnable = 0
 
-augroup TrimTrailingWhiteSpace
-    autocmd!
-    autocmd BufWritePre *.py :%s/\s\+$//e
-augroup END
+" augroup TrimTrailingWhiteSpace
+"     autocmd!
+"     autocmd BufWritePre *.py :%s/\s\+$//e
+" augroup END
+
+let g:jedi#completions_enabled = 0
+let g:jedi#use_splits_not_buffers = "right"
+
+let g:signify_vcs_list = ['git']
