@@ -67,7 +67,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'posva/vim-vue', { 'for' : 'vue' }
 
 " Git stuff in the gutter, undo/stage changes
-" Plug 'airblade/vim-gitgutter'
 Plug 'mhinz/vim-signify'
 
 " Show pretty line on indentation levels
@@ -179,8 +178,10 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<c-p>" : "\<S-Tab>"
 
+" echodoc config
 let g:echodoc#enable_at_startup = 1
 
+" ALE config
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -192,7 +193,6 @@ let g:ale_fixers = {
 let g:ale_python_autopep8_options = '--aggressive --ignore E501'
 let g:ale_fix_on_save = 1
 
-" Ale keybindings
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
@@ -217,6 +217,13 @@ nnoremap <Leader>fg :Rg!<CR>
 nnoremap <Leader>fm :Marks<CR>
 nnoremap <Leader>ff :call fzf#run(fzf#wrap('files', { 'source': 'rg -g "" --files', 'down': '40%' }, 1))<CR>
 
+" Jedi (python)
+let g:jedi#completions_enabled = 0
+let g:jedi#use_splits_not_buffers = "right"
+
+" Signify
+let g:signify_vcs_list = ['git']
+
 " typing a semi-colon starts command (normal mode)
 nnoremap ; :
 
@@ -225,21 +232,3 @@ nmap <silent> <Leader>/ :nohlsearch<CR>
 
 " Highlight extra whitespace at the end of a line
 match ExtraWhitespace /\v\s+$/
-
-
-" LSP
-" let g:LanguageClient_autoStart = 1
-" let g:LanguageClient_serverCommands = {
-"     \ 'python': ['pyls', '-v'] }
-" " we are using ale for linting anyway
-" let g:LanguageClient_diagnosticsEnable = 0
-
-" augroup TrimTrailingWhiteSpace
-"     autocmd!
-"     autocmd BufWritePre *.py :%s/\s\+$//e
-" augroup END
-
-let g:jedi#completions_enabled = 0
-let g:jedi#use_splits_not_buffers = "right"
-
-let g:signify_vcs_list = ['git']
