@@ -191,6 +191,7 @@ let g:ale_fixers = {
 \}
 
 let g:ale_python_autopep8_options = '--aggressive --ignore E501'
+let g:ale_python_flake8_options = '--max-complexity 10'
 let g:ale_fix_on_save = 1
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
