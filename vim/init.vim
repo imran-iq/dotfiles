@@ -91,6 +91,9 @@ Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 " Python jedi goodness
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 
+" Python syntax highlighting
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python' }
+
 " Show function signature and inline doc.
 Plug 'Shougo/echodoc.vim'
 
@@ -224,6 +227,10 @@ let g:jedi#use_splits_not_buffers = "right"
 
 " Signify
 let g:signify_vcs_list = ['git']
+
+" Semshi
+let g:semshi#error_sign = v:false
+let g:semshi#mark_selected_nodes = 0
 
 " typing a semi-colon starts command (normal mode)
 nnoremap ; :
