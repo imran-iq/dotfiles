@@ -31,7 +31,7 @@ set noshowmode
 set colorcolumn=80
 
 " Max columns to apply syntax to
-set synmaxcol=200
+" set synmaxcol=200
 
 " Whitespace behaviour
 set expandtab        " expand tabs by default
@@ -185,7 +185,7 @@ inoremap <expr><S-Tab> pumvisible() ? "\<c-p>" : "\<S-Tab>"
 let g:echodoc#enable_at_startup = 1
 
 " ALE config
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%:%code%]'
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'python': ['autopep8', 'isort'],
@@ -193,12 +193,12 @@ let g:ale_fixers = {
 \   'vue': ['eslint']
 \}
 
-let g:ale_python_autopep8_options = '--aggressive --ignore E501'
+let g:ale_python_autopep8_options = '--aggressive --ignore E501,E402'
 let g:ale_python_flake8_options = '--max-complexity 10'
 let g:ale_fix_on_save = 1
 
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)zz
+nmap <silent> <C-j> <Plug>(ale_next_wrap)zz
 
 " easy-align config
 
