@@ -85,12 +85,6 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python' }
 
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-jedi'
-
 " Repeat plugin commands with .
 Plug 'tpope/vim-repeat'
 
@@ -121,8 +115,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Because im too lazy to write my own status line
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'rbong/vim-crystalline'
 
 if g:os == "Darwin"
     " Dash plugin for mac
@@ -146,11 +139,6 @@ augroup WhiteSpaceHighlight
 augroup END
 
 colorscheme gruvbox
-
-" Airline config
-let g:airline_powerline_fonts = 1
-let g:airline_theme='gruvbox'
-let g:airline#extensions#tabline#enabled = 1
 
 " Indent guides
 let g:indentLine_char = '┆'
@@ -196,13 +184,23 @@ nnoremap <Leader>fg :Rg!<CR>
 nnoremap <Leader>fm :Marks<CR>
 nnoremap <Leader>ff :call fzf#run(fzf#wrap('files', { 'source': 'rg -g "" --files', 'down': '40%' }, 1))<CR>
 
-" NCM
-augroup ncmbuffenter
-    autocmd!
-    autocmd BufEnter * call ncm2#enable_for_buffer()
-augroup END
+" Crystalline
+function! StatusLine(current, width)
+  return (a:current ? crystalline#mode() . '%#Crystalline#' : '%#CrystallineInactive#')
+        \ . ' %f%h%w%m%r '
+        \ . (a:current ? '%#CrystallineFill# %{fugitive#head()} ' : '')
+        \ . '%=' . (a:current ? '%#Crystalline# %{&paste?"PASTE ":""}%{&spell?"SPELL ":""}' . crystalline#mode_color() : '')
+        \ . (a:width > 80 ? ' %{&ft}[%{&enc}][%{&ffs}] %l/%L %c%V %P ' : ' ')
+endfunction
 
-set completeopt=noinsert,menuone,noselect
+function! TabLine()
+  let l:vimlabel = has("nvim") ?  " NVIM " : " VIM "
+  return crystalline#bufferline(2, len(l:vimlabel), 1) . '%=%#CrystallineTab# ' . l:vimlabel
+endfunction
+
+let g:crystalline_statusline_fn = 'StatusLine'
+let g:crystalline_tabline_fn = 'TabLine'
+let g:crystalline_theme = 'gruvbox'
 
 " Signify
 let g:signify_vcs_list = ['git']
