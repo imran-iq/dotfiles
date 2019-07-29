@@ -22,7 +22,6 @@ let mapleader=" "  " space bar for leader
 
 syntax on
 set number
-
 " Use system clipboard
 set clipboard=unnamed
 set ruler
@@ -97,9 +96,6 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 " Make non active windows dark
 Plug 'blueyed/vim-diminactive'
 
-" Easier manipulation of func args, text objects a, i,
-Plug 'PeterRincker/vim-argumentative'
-
 " Git and Github stuff
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -171,18 +167,11 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)zz
 nmap <silent> <C-j> <Plug>(ale_next_wrap)zz
 
 " FZF
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
-
 nnoremap <Leader>ft :Tags!<CR>
 nnoremap <Leader>fb :Buffers<CR>
-nnoremap <Leader>fg :Rg!<CR>
+nnoremap <Leader>fg :Rg<CR>
 nnoremap <Leader>fm :Marks<CR>
-nnoremap <Leader>ff :call fzf#run(fzf#wrap('files', { 'source': 'rg -g "" --files', 'down': '40%' }, 1))<CR>
+nnoremap <Leader>ff :call fzf#run(fzf#wrap({ 'source': 'rg --hidden --glob "!.git" --files'}, 0))<CR>
 
 " Crystalline
 function! StatusLine(current, width)
