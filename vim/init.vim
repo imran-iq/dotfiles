@@ -77,7 +77,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'jeetsukumaran/vim-indentwise'
 
 " Aysnc linting
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 " Python syntax highlighting
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python' }
