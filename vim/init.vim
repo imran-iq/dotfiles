@@ -210,3 +210,5 @@ nmap <silent> <Leader>/ :nohlsearch<CR>
 
 " Highlight extra whitespace at the end of a line
 match ExtraWhitespace /\v\s+$/
+
+nnoremap <Leader>cc ggO# coding: UTF-8<esc><C-o>
