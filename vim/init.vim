@@ -201,6 +201,7 @@ let g:semshi#mark_selected_nodes = 0
 " Jedi
 let g:jedi#completions_enabled = 0
 let g:jedi#use_splits_not_buffers = "right"
+let g:jedi#show_call_signatures = 0
 
 " typing a semi-colon starts command (normal mode)
 nnoremap ; :
