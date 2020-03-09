@@ -26,6 +26,8 @@ set number
 set clipboard=unnamed
 set ruler
 set noshowmode
+packadd! matchit
+
 " Color column at 80 characters
 set colorcolumn=80
 
@@ -171,7 +173,9 @@ nnoremap <Leader>ft :Tags!<CR>
 nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>fg :Rg<CR>
 nnoremap <Leader>fm :Marks<CR>
-nnoremap <Leader>ff :call fzf#run(fzf#wrap({ 'source': 'rg --hidden --glob "!.git" --files'}, 0))<CR>
+nnoremap <Leader>ff :Files<CR>
+
+let g:fzf_buffers_jump = 1
 
 " Crystalline
 function! StatusLine(current, width)
