@@ -176,6 +176,7 @@ nnoremap <Leader>fm :Marks<CR>
 nnoremap <Leader>ff :Files<CR>
 
 let g:fzf_buffers_jump = 1
+let g:fzf_preview_window = ''
 
 " Crystalline
 function! StatusLine(current, width)
